@@ -1,4 +1,6 @@
 'use strict';
+var autoprefixer = require('autoprefixer');
+
 const path = require('path');
 const srcPath = path.join(__dirname, '/../src');
 const dfltPort = 8000;
@@ -47,6 +49,6 @@ module.exports = {
   port: dfltPort,
   getDefaultModules: getDefaultModules,
   postcss: function () {
-    return [];
+    return [autoprefixer];
   }
 };

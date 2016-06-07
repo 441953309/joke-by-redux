@@ -8,8 +8,8 @@ import React, {
   Component,
   PropTypes
 } from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 import Main from '../components/Main';
 /* Populated by react-webpack-redux:reducer */
 class App extends Component {
@@ -34,7 +34,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   /* Populated by react-webpack-redux:action */
   const actions = {};
-  const actionMap = { actions: bindActionCreators(actions, dispatch) };
+  const actionMap = {actions: bindActionCreators(actions, dispatch)};
   return actionMap;
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(App);
