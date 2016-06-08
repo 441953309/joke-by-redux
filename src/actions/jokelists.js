@@ -7,7 +7,7 @@ export function fetchJokes(category, page) {
     fetch(constructUrl(category, page), {headers: {'apikey': '10b6c7b9c6b6381242dbd77dac35fdf2'}})
       .then(response => response.json())
       .then(json => {
-        dispatch(receiveJokes(category, page, json.contentlist, json.allPages));
+        dispatch(receiveJokes(category, page, json.showapi_res_body.contentlist, json.showapi_res_body.allPages));
       })
       .catch(err => {
         throw err;

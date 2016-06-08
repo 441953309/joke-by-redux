@@ -1,21 +1,16 @@
-/* CAUTION: When using the generators, this file is modified in some places.
- *          This is done via AST traversal - Some of your formatting may be lost
- *          in the process - no functionality should be broken though.
- *          This modifications only run once when the generator is invoked - if
- *          you edit them, they are not updated again.
- */
-import React, {
-  Component,
-  PropTypes
-} from 'react';
+import React, {Component, PropTypes} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import Main from '../components/Main';
-/* Populated by react-webpack-redux:reducer */
+
 class App extends Component {
   render() {
-    const {actions} = this.props;
-    return <Main actions={actions}/>;
+    const {children, actions} = this.props;
+    console.log(this.props)
+    return (
+      <div>
+        {children}
+      </div>
+    );
   }
 }
 /* Populated by react-webpack-redux:reducer
@@ -24,6 +19,7 @@ class App extends Component {
  *       adjust it here.
  */
 App.propTypes = {
+  children: PropTypes.node,
   actions: PropTypes.object.isRequired
 };
 function mapStateToProps(state) {
