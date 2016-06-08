@@ -1,1 +1,2 @@
-/* Populated by react-webpack-redux:action */
+export const REQUEST_JOKES = 'REQUEST_JOKES';
+export const RECEIVE_JOKES = 'RECEIVE_JOKES';
