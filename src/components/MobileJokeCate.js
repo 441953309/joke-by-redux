@@ -12,9 +12,6 @@ class MobileJokeCate extends Component {
         <Link to="/jokes/2" className={category == 2? 'mobile-joke-cate-item active' : 'mobile-joke-cate-item'}>
           搞笑图片
         </Link>
-        <Link to="/jokes/3" className={category == 3? 'mobile-joke-cate-item active' : 'mobile-joke-cate-item'}>
-          美女图片
-        </Link>
       </div>
     )
   }

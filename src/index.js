@@ -1,3 +1,4 @@
+require('core-js');
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
 require('./styles/main.scss');
