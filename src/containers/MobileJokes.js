@@ -1,36 +1,40 @@
-import React, {Component, PropTypes} from 'react';
+import React from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
+import MobileJokeCate from '../components/MobileJokeCate'
 import MobileJokeList from '../components/MobileJokeList'
 
-import {fetchJokes} from '../actions/jokelists'
+import {fetchJokesIfNeed} from '../actions/jokelists'
 
-class MobileJokes extends Component {
+class MobileJokes extends React.Component {
   render() {
-    const {jokelists, params, actions:{fetchJokes}} = this.props;
+    const {environment:{width, height}, jokelists, params, actions:{fetchJokesIfNeed}} = this.props;
     const category = params.category ? params.category : 1;
 
     return (
-      <div>
+      <div className="mobile" style={{width: `${width}px`, height: `${height}px`}}>
+        <MobileJokeCate
+          category={category}/>
         <MobileJokeList
           category={category}
           jokelists={jokelists}
-          fetchJokes={fetchJokes}/>
+          fetchJokesIfNeed={fetchJokesIfNeed}/>
       </div>
     )
   }
 }
 
 function mapStateToProps(state) {
-  const {jokelists} = state;
+  const {environment, jokelists} = state;
   return {
+    environment,
     jokelists
   };
 }
 function mapDispatchToProps(dispatch) {
   const actions = {
-    fetchJokes
+    fetchJokesIfNeed
   };
   const actionMap = {actions: bindActionCreators(actions, dispatch)};
   return actionMap;

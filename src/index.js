@@ -4,7 +4,7 @@ require('./styles/main.scss');
 
 import React from 'react';
 import {render} from 'react-dom';
-import {hashHistory, Router, Route, IndexRoute, Redirect} from 'react-router'
+import {hashHistory, Router, Route, IndexRoute} from 'react-router'
 import {syncHistoryWithStore} from 'react-router-redux'
 
 import {Provider} from 'react-redux';

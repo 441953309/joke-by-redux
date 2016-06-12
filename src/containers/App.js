@@ -1,11 +1,17 @@
-import React, {Component, PropTypes} from 'react';
+import React, {PropTypes} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
-class App extends Component {
+import {initEnvironment} from '../actions/environment';
+
+class App extends React.Component {
+  componentDidMount() {
+    const {actions:{initEnvironment}} = this.props;
+    initEnvironment();
+  }
+
   render() {
-    const {children, actions} = this.props;
-    console.log(this.props)
+    const {children} = this.props;
     return (
       <div>
         {children}
@@ -13,23 +19,19 @@ class App extends Component {
     );
   }
 }
-/* Populated by react-webpack-redux:reducer
- *
- * HINT: if you adjust the initial type of your reducer, you will also have to
- *       adjust it here.
- */
+
 App.propTypes = {
   children: PropTypes.node,
   actions: PropTypes.object.isRequired
 };
 function mapStateToProps(state) {
-  /* Populated by react-webpack-redux:reducer */
   const props = {};
   return props;
 }
 function mapDispatchToProps(dispatch) {
-  /* Populated by react-webpack-redux:action */
-  const actions = {};
+  const actions = {
+    initEnvironment
+  };
   const actionMap = {actions: bindActionCreators(actions, dispatch)};
   return actionMap;
 }

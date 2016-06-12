@@ -6,18 +6,18 @@ import Spinner from './Spinner'
 
 class MobileJokeList extends Component {
 
-  componentWillMount() {
-    const {category, jokelists, fetchJokes} = this.props;
+  componentDidMount() {
+    const {category, jokelists, fetchJokesIfNeed} = this.props;
     if (!(category in jokelists) || jokelists[category].items.length === 0) {
-      fetchJokes(category, 1);
+      fetchJokesIfNeed(category);
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    const {category, jokelists, fetchJokes} = this.props;
+    const {category, jokelists, fetchJokesIfNeed} = this.props;
     if (category !== nextProps.category) {
       if (!(nextProps.category in jokelists) || jokelists[nextProps.category].items.length === 0) {
-        fetchJokes(category, 1);
+        fetchJokesIfNeed(nextProps.category);
       }
     }
   }
@@ -38,24 +38,38 @@ class MobileJokeList extends Component {
   }
 
   renderSpinner() {
-    const {category, jokelists} = this.props;
-    if (!(category in jokelists) || jokelists[category].isFetching) {
+    const {category, jokelists, fetchJokesIfNeed} = this.props;
+    if (!(category in jokelists)) {
       return <Spinner />;
+    } else {
+      if (jokelists[category].isFetching) {
+        return <Spinner />;
+      } else if (jokelists[category].isNetError) {
+        return <div className="spinner-net-error" onClick={()=>{fetchJokesIfNeed(category,true)}}>网络异常,点击重试</div>
+      }
     }
 
     return null;
   }
 
   render() {
+    const {category, fetchJokesIfNeed} = this.props;
+
     return (
       <MobileInfiniteScroll
-        className=""
-        scrollFunc={()=>{}}>
+        className="mobile-jokes"
+        scrollFunc={()=>{fetchJokesIfNeed(category)}}>
         {this.renderJokeListItems()}
         {this.renderSpinner()}
       </MobileInfiniteScroll>
     )
   }
 }
+
+MobileJokeList.propTypes = {
+  category: PropTypes.number.isRequired,
+  jokelists: PropTypes.object.isRequired,
+  fetchJokesIfNeed: PropTypes.func.isRequired
+};
 
 export default MobileJokeList;

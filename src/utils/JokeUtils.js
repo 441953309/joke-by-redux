@@ -4,7 +4,6 @@ export function constructUrl(category, page){
   }else if(category == 2){
     return `http://apis.baidu.com/showapi_open_bus/showapi_joke/joke_pic?page=${page}`;
   }else{
-    console.log('分类错误:' + category)
     return null;
   }
 }
